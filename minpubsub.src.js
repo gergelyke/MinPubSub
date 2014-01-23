@@ -77,19 +77,10 @@
     }
   };
 
-  // UMD definition to allow for CommonJS, AMD and legacy window
-  if (typeof module === 'object' && typeof module.exports === 'object') {
-    // CommonJS, just export
-    module.exports = exports = MinPubSub;
-  } else if (typeof define === 'function' && define.amd) {
-    // AMD support
-    define(function () { return MinPubSub; });
-  } else if (typeof window === 'object') {
-    // If no AMD and we are in the browser, attach to window
-    window.MinPubSub = {
-      on: MinPubSub.subscribe,
-      emit: MinPubSub.publish
-    }
+
+  window.MinPubSub = {
+    on: MinPubSub.subscribe,
+    emit: MinPubSub.publish
   }
 
 })(window);
