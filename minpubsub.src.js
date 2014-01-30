@@ -12,18 +12,18 @@
 
   MinPubSub.publish = function(/* String */ topic, /* Array? */ args){
     // summary:
-    //		Publish some data on a named topic.
+    //    Publish some data on a named topic.
     // topic: String
-    //		The channel to publish on
+    //    The channel to publish on
     // args: Array?
-    //		The data to publish. Each array item is converted into an ordered
-    //		arguments on the subscribed functions.
+    //    The data to publish. Each array item is converted into an ordered
+    //    arguments on the subscribed functions.
     //
     // example:
-    //		Publish stuff on '/some/topic'. Anything subscribed will be called
-    //		with a function signature like: function(a,b,c){ ... }
+    //    Publish stuff on '/some/topic'. Anything subscribed will be called
+    //    with a function signature like: function(a,b,c){ ... }
     //
-    //		publish("/some/topic", ["a","b","c"]);
+    //    publish("/some/topic", ["a","b","c"]);
 
     var subs = cache[topic],
       len = subs ? subs.length : 0;
@@ -36,19 +36,19 @@
 
   MinPubSub.subscribe = function(/* String */ topic, /* Function */ callback){
     // summary:
-    //		Register a callback on a named topic.
+    //    Register a callback on a named topic.
     // topic: String
-    //		The channel to subscribe to
+    //    The channel to subscribe to
     // callback: Function
-    //		The handler event. Anytime something is publish'ed on a
-    //		subscribed channel, the callback will be called with the
-    //		published array as ordered arguments.
+    //    The handler event. Anytime something is publish'ed on a
+    //    subscribed channel, the callback will be called with the
+    //    published array as ordered arguments.
     //
     // returns: Array
-    //		A handle which can be used to unsubscribe this particular subscription.
+    //    A handle which can be used to unsubscribe this particular subscription.
     //
     // example:
-    //		subscribe("/some/topic", function(a, b, c){ /* handle data */ });
+    //    subscribe("/some/topic", function(a, b, c){ /* handle data */ });
 
     if(!cache[topic]){
       cache[topic] = [];
@@ -59,12 +59,12 @@
 
   MinPubSub.unsubscribe = function(/* Array */ handle, /* Function? */ callback){
     // summary:
-    //		Disconnect a subscribed function for a topic.
+    //    Disconnect a subscribed function for a topic.
     // handle: Array
-    //		The return value from a subscribe call.
+    //    The return value from a subscribe call.
     // example:
-    //		var handle = subscribe("/some/topic", function(){});
-    //		unsubscribe(handle);
+    //    var handle = subscribe("/some/topic", function(){});
+    //    unsubscribe(handle);
 
     var subs = cache[callback ? handle : handle[0]],
       callback = callback || handle[1],
@@ -77,8 +77,8 @@
     }
   };
 
-
-  window.MinPubSub = {
+  window.ssp = window.ssp || {};
+  window.ssp.MinPubSub = {
     on: MinPubSub.subscribe,
     emit: MinPubSub.publish
   }
