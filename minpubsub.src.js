@@ -7,7 +7,7 @@
 var MinPubSub = {};
 
 // the topic/subscription hash
-MinPubSub.cache = d.c_ || {}; //check for "c_" cache for unit testing
+MinPubSub.cache = {}; //check for "c_" cache for unit testing
 
 MinPubSub.publish = function (/* String */ topic, /* Array? */ args) {
   // summary:
