@@ -75,3 +75,6 @@ MinPubSub.unsubscribe = function (/* Array */ handle, /* Function? */ callback) 
     }
   }
 };
+
+MinPubSub.emit = MinPubSub.publish;
+MinPubSub.on = MinPubSub.subscribe;
